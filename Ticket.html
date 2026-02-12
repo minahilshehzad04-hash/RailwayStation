@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("/images/Platform.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            animation: fadeIn 1s ease-out, slideInUp 0.5s ease-out;
+            opacity: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #2E3A59;
+            letter-spacing: 1px;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2E3A59;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: left;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        input[type=text], input[type=date], input[type=time] {
+            width: calc(100% - 30px);
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-bottom: 2px solid #6a11cb;
+            background: rgba(255, 255, 255, 0.8);
+            transition: border-bottom-color 0.3s ease;
+            font-size: 16px;
+            outline: none;
+            animation: slideInRight 1s ease-out;
+        }
+
+        input[type=text]:focus, input[type=date]:focus, input[type=time]:focus {
+            border-bottom-color: #2575fc;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 15px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            outline: none;
+            animation: slideInUpBtn 1s ease-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUpBtn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ticket</h1>
+        <form action="http://localhost:3001/submit/ticket" method="post">
+            <label for="ticket_id">Ticket ID</label>
+            <input type="text" id="ticket_id" placeholder="Enter Ticket ID" name="ticket_id" required>
+
+            <label for="ticket_status">Status</label>
+            <input type="text" id="ticket_status" placeholder="Enter Status" name="ticket_status" required>
+
+            <label for="ticket_issue_date">Issue Date</label>
+            <input type="date" id="ticket_issue_date" name="ticket_issue_date" required>
+
+            <label for="ticket_issue_time">Issue Time</label>
+            <input type="time" id="ticket_issue_time" name="ticket_issue_time" required>
+
+            <label for="coach_no">Coach No.</label>
+            <input type="text" id="coach_no" placeholder="Enter Coach No." name="coach_no" required>
+
+            <label for="duration">Duration</label>
+            <input type="text" id="duration" placeholder="Enter Duration" name="duration" required>
+
+            <label for="p_id">Enter Passenger ID</label>
+            <input type="text" id="p_id" placeholder="Enter Passenger ID" name="p_id" required>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.container').style.opacity = '1';
+        });
+    </script>
+</body>
+</html>

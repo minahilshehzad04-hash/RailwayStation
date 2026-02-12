@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Class Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("Class.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .bg-img {
+            background-image: url("/images/Train.jpeg");
+            min-height: 740px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .container {
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            background-color: white;
+            animation: fadeIn 1s ease-out, slideInUp 0.5s ease-out;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #2E3A59;
+            letter-spacing: 1px;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2E3A59;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: left;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        input[type=text] {
+            width: calc(100% - 30px);
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-bottom: 2px solid #6a11cb;
+            background: rgba(255, 255, 255, 0.8);
+            transition: border-bottom-color 0.3s ease;
+            font-size: 16px;
+            outline: none;
+            animation: slideInRight 1s ease-out;
+        }
+
+        input[type=text]:focus {
+            border-bottom-color: #2575fc;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 15px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            outline: none;
+            animation: slideInUpBtn 1s ease-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUpBtn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-img">
+        <form method="post" action="http://localhost:3001/submit/TrainClass" class="container">
+            <h1>TrainClass</h1>
+            <label for="train_id"><b>Train ID</b></label>
+            <input type="text" placeholder="Enter Train ID" name="train_id" id="train_id" required>
+
+            <label for="class_id"><b>Class ID</b></label>
+            <input type="text" placeholder="Enter Class ID" name="class_id" id="class_id" required>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

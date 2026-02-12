@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Station Management</title>
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+     <!-- Custom CSS -->
+    <style>
+       @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+        :root {
+            --header-height: 3rem;
+            --nav-width: 68px;
+            --first-color: #4723D9;
+            --first-color-light: #AFA5D9;
+            --white-color: #F7F6FB;
+            --body-font: 'Nunito', sans-serif;
+            --normal-font-size: 1rem;
+            --z-fixed: 100;
+        }
+        .bx{
+            line-height: 3;
+            right: 0;
+        }
+
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box;
+        }
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+header {
+  color: #fff;
+  margin-top:0;
+}
+
+        a {
+            text-decoration: none;
+        }
+
+        .header_toggle {
+            color: rgb(26, 26, 83);
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+
+        .l-navbar {
+            position: fixed;
+            top: 0;
+            left: -30%;
+            width: 187px;
+            height: 100vh;
+            background-color: var(--first-color);
+            padding: .5rem 3rem 0 0;
+            transition: .5s;
+            z-index: var(--z-fixed);
+        }
+
+        .nav {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            padding-left: 22px;
+        }
+
+        .nav_logo,
+        .nav_link {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            align-items: center;
+            column-gap: 1rem;
+            padding: .5rem 0 .5rem 1.5rem;
+        }
+
+        .nav_logo {
+            margin-bottom: 2rem;
+        }
+
+        .nav_logo-icon {
+            font-size: 1.25rem;
+            color: var(--white-color);
+        }
+
+        .nav_logo-name {
+            color: var(--white-color);
+            font-weight: 700;
+            padding: 34px 26px 0px 59px;
+        }
+
+        .nav_link {
+            position: relative;
+            color: white;
+            margin-bottom: 1.5rem;
+            transition: .3s;
+            padding: 0px 0px 0px 5px ;
+        }
+
+        .nav_link:hover {
+            /* color: var(--white-color); */
+        }
+
+        .nav_icon {
+            font-size: 2.25rem;
+        }
+
+        .show {
+            left: 0;
+        }
+
+        .body-pd {
+            padding-left: calc(var(--nav-width) + 1rem);
+        }
+
+        .active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 2px;
+            height: 32px;
+        }
+
+        .height-100 {
+            height: 100vh;
+        }
+
+        @media screen and (min-width: 768px) {
+            body {
+                margin: calc(var(--header-height) + -4rem) 0 0 0;
+                padding-left: calc(var(--nav-width) + 2rem);
+            }
+            .header {
+                height: calc(var(--header-height) + 1rem);
+                padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+            }
+            .header_img {
+                width: 40px;
+                height: 40px;
+            }
+            .header_img img {
+                width: 45px;
+            }
+            .l-navbar {
+                left: 0;
+                padding: 8rem 1rem 0 0;
+            }
+            .show {
+                width: calc(var(--nav-width) + 156px);
+            }
+            .body-pd {
+                padding-left: calc(var(--nav-width) + 188px);
+            }
+        } 
+        .navbar-right {
+    position: fixed;
+    top: 0;
+    right: 45px;
+}
+
+       .container1 {
+  background-color: #182346;
+  display: flex;
+  border-radius: 8px;
+  margin: 2px 0px 0px 97px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 0px 563px 0px 0px;
+
+}
+.logo img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  margin: 0;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(141deg, #9c26d7, #1eb1db);
+  -webkit-background-clip: text;
+  font-size: 31px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 800;
+}
+
+       
+       .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+/* Dropdown menu items */
+.dropdown-menu .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect on dropdown items */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    color: #fff;
+    background-color: #007bff;
+}
+
+/* Active dropdown item */
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #fff;
+    background-color: #007bff;
+}
+
+/* Divider between dropdown items */
+.dropdown-divider {
+    height: 0;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,0.15);
+}
+
+        /* Footer styles */
+        footer {
+            background-color: #131c39;
+            color: #ffffff;
+            padding: 50px;
+            margin: 2px 0px 0px -20px;
+        }
+
+        .footer-distributed{
+  background: #666;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 55px 50px;
+  margin: 0px 0px 0px 97px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+.footer-distributed .footer-left{
+  width: 40%;
+}
+
+.footer-distributed h3{
+  color:  #ffffff;
+  font: normal 36px 'Open Sans', cursive;
+  margin: 0;
+}
+
+.footer-distributed h3 span{
+  color:  lightseagreen;
+}
+
+.footer-distributed .footer-links{
+  color:  #ffffff;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer-distributed .footer-links a{
+  display:inline-block;
+  line-height: 1.8;
+  font-weight:400;
+  text-decoration: none;
+  color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+  color:  #222;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+
+.footer-distributed .footer-center{
+  width: 35%;
+}
+
+.footer-distributed .footer-center i{
+  background-color:  #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+  font-size: 17px;
+  line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+  display: inline-block;
+  color: #ffffff;
+  font-weight:400;
+  vertical-align: middle;
+  margin:0;
+}
+
+.footer-distributed .footer-center p span{
+  display:block;
+  font-weight: normal;
+  font-size:14px;
+  line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+  color:  lightseagreen;
+  text-decoration: none;;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight:300;
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+.footer-distributed .footer-right{
+  width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+  line-height: 20px;
+  color:  #92999f;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+  display: block;
+  color:  #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+  margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color:  #33383b;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 880px) {
+
+  .footer-distributed{
+    font: bold 14px sans-serif;
+  }
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right{
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .footer-distributed .footer-center i{
+    margin-left: 0;
+  }
+
+}
+
+.container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+    </style>
+</head>
+
+
+<body id="body-pd">
+        <div class="container-fluid container1"> 
+          <div class="logo navbar-left">
+            <img src="/images/railwaysystemlogo.png" alt="Railway Logo">
+            <h1>RailEase</h1>
+           </div>
+
+
+    <!-- Side Navbar -->
+        <!-- Side Navbar -->
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div class="nav_list">
+                    <!-- Trains Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="nav_link dropdown-toggle" id="trainsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class='bx bx-train nav_icon'></i> <span class="nav_name">Trains</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="trainsDropdown">
+                            <a class="dropdown-item" href="#" onclick="fetchData('trains'); return false;">Modify Train</a>
+                        </div>
+                    </div>
+
+                    <!-- Passenger Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="nav_link dropdown-toggle" id="passengerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class='bx bx-user nav_icon'></i> <span class="nav_name">Passenger</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="passengerDropdown">
+                            <a class="dropdown-item" href="#" onclick="fetchData('passengers'); return false;">Modify Passenger</a>
+                        </div>
+                    </div>
+
+                    <!-- Platform Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="nav_link dropdown-toggle" id="platformDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class='bx bx-train nav_icon'></i> <span class="nav_name">Platform</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="platformDropdown">
+                            <a class="dropdown-item" href="#" onclick="fetchData('platforms'); return false;">Modify Platform</a>
+                        </div>
+                    </div>
+
+                    <!-- Staff Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="nav_link dropdown-toggle" id="staffDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class='bx bx-group nav_icon'></i> <span class="nav_name">Staff</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="staffDropdown">
+                            <a class="dropdown-item" href="#" onclick="fetchData('staff'); return false;">Modify Staff</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+<!-- Main Content Section -->
+<div class="height-100 content container" id="main-content">
+    <!-- Dynamic content will be loaded here -->
+</div>
+
+
+    <!-- Footer Section -->
+    <footer class="footer-distributed" style="background-color: #131c39;">    
+        <div class="footer-left">
+          <h3>RailEase<span></span></h3>
+          <p class="footer-links">
+            <a href="#" class="link-1">Home</a>
+            
+            <a href="#">Blog</a>
+          
+            <a href="#">Pricing</a>
+          
+            <a href="#">About</a>
+            
+            <a href="#">Faq</a>
+            
+            <a href="#">Contact</a>
+          </p>
+  
+          <p class="footer-company-name">RailEase © 2015</p>
+        </div>
+  
+        <div class="footer-center">
+          <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>106 A. Mughalpura Station</span> Mughalpura Station, Lahore</p>
+          </div>
+  
+          <div>
+            <i class="fa fa-phone"></i>
+            <p>+92-345-958-2324</p>
+          </div>
+  
+          <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@company.com">support@railease.com</a></p>
+          </div>
+  
+        </div>
+  
+        <div class="footer-right">
+  
+          <p class="footer-company-about">
+            <span>RailEase</span>
+            The RailEase project aims to modernize and enhance the country's railway infrastructure, catering to the growing demands of passengers and freight transportation. With a focus on efficiency, safety, and comfort, the project encompasses various initiatives, including the renovation of existing stations and the construction of new ones equipped with state-of-the-art facilities.
+          </p>
+  
+          <div class="footer-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+  
+          </div>
+        </div>
+</footer>
+
+    <!-- External JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        async function fetchData(table) {
+            try {
+                let url = '';
+                switch (table) {
+                    case 'trains':
+                        url = 'http://localhost:3001/fetch/trains';
+                        break;
+                    case 'passengers':
+                        url = 'http://localhost:3001/fetch/passengers';
+                        break;
+                    case 'platforms':
+                        url = 'http://localhost:3001/fetch/platforms';
+                        break;
+                    case 'staff':
+                        url = 'http://localhost:3001/fetch/staff';
+                        break;
+                    default:
+                        throw new Error('Invalid table specified');
+                }
+
+                console.log('Fetching data from URL:', url); // Debugging line
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get("content-type");
+
+                if (contentType && contentType.indexOf("application/json") !== -1) {
+                    const data = await response.json();
+                    console.log('Data fetched successfully for table:', table); // Debugging line
+                    console.log(data); // Debugging line
+
+                    let tableHTML = '<table class="table table-bordered"><thead><tr>';
+                    if (data.length > 0) {
+                        // Create table headers
+                        Object.keys(data[0]).forEach(key => {
+                            tableHTML += `<th>${key}</th>`;
+                        });
+                        tableHTML += '</tr></thead><tbody>';
+
+                        // Create table rows
+                        data.forEach(row => {
+                            tableHTML += '<tr>';
+                            Object.values(row).forEach(value => {
+                                tableHTML += `<td>${value}</td>`;
+                            });
+                            tableHTML += '</tr>';
+                        });
+                        tableHTML += '</tbody></table>';
+                    } else {
+                        tableHTML = '<p>No data available.</p>';
+                    }
+                    document.getElementById('main-content').innerHTML = tableHTML;
+                } else {
+                    const text = await response.text();
+                    console.error('Expected JSON response but got:', text); // Debugging line
+                    document.getElementById('main-content').innerHTML = '<p>Unexpected response format.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching data for table:', table); // Debugging line
+                console.error(error); // Debugging line
+                document.getElementById('main-content').innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+   

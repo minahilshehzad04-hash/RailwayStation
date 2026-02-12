@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("/images/Platform.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            background-color: white;
+            animation: fadeIn 1s ease-out, slideInUp 0.5s ease-out;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #2E3A59;
+            letter-spacing: 1px;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2E3A59;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: left;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        input[type=text], input[type=time], input[type=date] {
+            width: calc(100% - 30px);
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-bottom: 2px solid #6a11cb;
+            background: rgba(255, 255, 255, 0.8);
+            transition: border-bottom-color 0.3s ease;
+            font-size: 16px;
+            outline: none;
+            animation: slideInRight 1s ease-out;
+        }
+
+        input[type=text]:focus, input[type=time]:focus, input[type=date]:focus {
+            border-bottom-color: #2575fc;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 15px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            outline: none;
+            animation: slideInUpBtn 1s ease-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUpBtn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-img">
+        <form action="http://localhost:3001/submit/booking" method="post" class="container">
+            <h1>Booking</h1>
+            <div class="form-group">
+                <label for="booking_id">Booking ID</label>
+                <input type="text" id="booking_id" name="booking_id" placeholder="Enter Booking ID" required>
+            </div>
+
+            <div class="form-group">
+                <label for="booking_time">Booking Time</label>
+                <input type="time" id="booking_time" name="booking_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="boarding_date">Boarding Date</label>
+                <input type="date" id="boarding_date" name="boarding_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="boarding_time">Boarding Time</label>
+                <input type="time" id="boarding_time" name="boarding_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="seat_no">Seat No.</label>
+                <input type="text" id="seat_no" name="seat_no" placeholder="Enter Seat No." required>
+            </div>
+
+            <div class="form-group">
+                <label for="p_id">Passenger ID</label>
+                <input type="text" id="p_id" name="p_id" placeholder="Enter Passenger ID" required>
+            </div>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

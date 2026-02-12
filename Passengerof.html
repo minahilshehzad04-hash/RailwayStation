@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("/images/Passenger.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 800px;
+            text-align: left;
+            animation: fadeIn 1s ease-out, slideInUp 0.5s ease-out;
+            opacity: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #2E3A59;
+            letter-spacing: 1px;
+            font-size: 28px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2E3A59;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        input[type=text], input[type=password] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-bottom: 2px solid #6a11cb;
+            background: rgba(255, 255, 255, 0.8);
+            transition: border-bottom-color 0.3s ease;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            border-bottom-color: #2575fc;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 15px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .radio-group label {
+            margin-right: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #2E3A59;
+            text-transform: uppercase;
+        }
+
+        .radio-group input {
+            margin-right: 5px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .form-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Passenger</h1>
+        <form action="http://localhost:3001/submit/passenger" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id">Passenger ID</label>
+                    <input type="text" id="id" placeholder="Enter ID" name="p_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter Name" name="p_name" required>
+                </div>
+                <div class="form-group radio-group">
+                    <label>Select the Gender:</label>
+                    <input type="radio" id="Male" name="gender" value="M" required>
+                    <label for="Male">Male</label>
+                    <input type="radio" id="Female" name="gender" value="F" required>
+                    <label for="Female">Female</label>
+                </div>
+                <div class="form-group">
+                    <label for="Telephone">Phone No:</label>
+                    <input type="text" id="Telephone" placeholder="Enter Phone No" name="tell_no" required>
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email address:</label>
+                    <input type="text" id="Email" placeholder="Enter Email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="CNIC">CNIC:</label>
+                    <input type="text" id="CNIC" placeholder="Enter CNIC" name="CNIC" required>
+                </div>
+                <div class="form-group">
+                    <label for="TrainId">Train ID</label>
+                    <input type="text" id="TrainId" placeholder="Enter Train ID" name="train_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="StationId">Station ID</label>
+                    <input type="text" id="StationId" placeholder="Enter Station ID" name="s_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="RouteId">Route ID</label>
+                    <input type="text" id="RouteId" placeholder="Enter Route ID" name="route_id" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="RouteId">Password</label>
+                    <input type="password" id="passengerpassword" placeholder="Enter Password" name="p_password" required>
+                </div>
+
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.container').style.opacity = '1';
+        });
+    </script>
+</body>
+</html>

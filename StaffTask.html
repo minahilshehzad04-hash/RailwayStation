@@ -1,0 +1,648 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Tasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        header {
+            color: #fff;
+            padding: 0px 0;
+        }
+        .bg {
+            background-image: url("/images/StaffBackground.jpg");
+            min-height: 503px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            animation: changeBackground 5s infinite;
+        }
+        .container {
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .container1 {
+            background-color: #182346;
+            display: flex;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 56px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 0px 563px 0px 0px;
+        }
+        .logo img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+        .logo h1 {
+            margin: 0;
+            -webkit-text-fill-color: transparent;
+            background: linear-gradient(141deg, #9c26d7, #1eb1db);
+            -webkit-background-clip: text;
+            font-size: 31px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: 800;
+        }
+        .left-content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+
+        }
+        .left-content h2 {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .left-content p {
+            font-size: 18px;
+        }
+        .left-content .btn {
+            background-color: rgb(40, 122, 230);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 18px 35px;
+            margin: 45px;
+        }
+        .left-content .btn:hover {
+            background-color: #fff;
+            color: #182346;
+            border: 1px solid #182346;
+        }
+        .passenger-tasks {
+            position: absolute;
+            top: 47%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .tasks button,
+        .tasks select {
+            margin-bottom: 10px;
+        }
+        * {
+            font-family: Open Sans;
+        }
+        .footer-distributed {
+            background: #666;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+            padding: 55px 50px;
+        }
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .footer-distributed .footer-left {
+            width: 40%;
+        }
+        .footer-distributed h3 {
+            color: #ffffff;
+            font: normal 36px 'Open Sans', cursive;
+            margin: 0;
+        }
+        .footer-distributed h3 span {
+            color: lightseagreen;
+        }
+        .footer-distributed .footer-links {
+            color: #ffffff;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            font-weight: 400;
+            text-decoration: none;
+            color: inherit;
+        }
+        .footer-distributed .footer-company-name {
+            color: #222;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+        .footer-distributed .footer-center i {
+            background-color: #33383b;
+            color: #ffffff;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+        .footer-distributed .footer-center i.fa-envelope {
+            font-size: 17px;
+            line-height: 38px;
+        }
+        .footer-distributed .footer-center p {
+            display: inline-block;
+            color: #ffffff;
+            font-weight: 400;
+            vertical-align: middle;
+            margin: 0;
+        }
+        .footer-distributed .footer-center p span {
+            display: block;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 2;
+        }
+        .footer-distributed .footer-center p a {
+            color: lightseagreen;
+            text-decoration: none;;
+        }
+        .footer-distributed .footer-links a:before {
+            content: "|";
+            font-weight: 300;
+            font-size: 20px;
+            left: 0;
+            color: #fff;
+            display: inline-block;
+            padding-right: 5px;
+        }
+        .footer-distributed .footer-links .link-1:before {
+            content: none;
+        }
+        .footer-distributed .footer-right {
+            width: 20%;
+        }
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+        .footer-distributed .footer-company-about span {
+            display: block;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+        .footer-distributed .footer-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color: #33383b;
+            border-radius: 2px;
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 880px) {
+            .footer-distributed {
+                font: bold 14px sans-serif;
+            }
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            .footer-distributed .footer-center i {
+                margin-left: 0;
+            }
+        }
+        .btn {
+            background-color: #131c39;
+            margin: 5px;
+        }
+        .btn:hover {
+            background-color: white;
+            color: #182346;
+        }
+        .passenger-tasks h2 {
+            font-family: cursive;
+            font-weight: 500;
+            font-size: x-large;
+        }
+        .faq {
+            padding: 40px;
+        }
+        .container {
+            margin: auto;
+        }
+        .containerbdy {
+            margin: 4.125rem auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .containerbdy h2 {
+            text-align: center;
+            justify-content: center;
+            padding: 25px;
+            font-family: cursive;
+            width: 100%;
+        }
+        .card {
+            width: 100%;
+            height: 100%;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .toggle-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .toggle-button:hover {
+            color: #182346;
+        }
+        .text-center{
+          font-family: cursive;
+          color: #131c39;
+        }
+    body * {
+    border-color: var(--chakra-colors-gray-500);
+}
+
+.home{
+    background-color: rgb(216, 216, 8);
+
+}
+
+.buttons .btn-trans:hover {
+    background-color: white;
+    color: #182346; /* Change text color to dark */
+}
+.buttons .btn-trans{
+    color: white;
+}
+.video-container video{
+width: 1121px;
+height: 500px;
+}
+.card {
+            margin-bottom: 20px;
+    }
+.card-header {
+ background-color: #131c39;
+ color: white;
+    }
+    .video-container {
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            width: 1132px;
+            height: 520px;
+            margin: auto;
+            background: #000;
+        }
+        .video-container iframe,
+        .video-container object,
+        .video-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1121px;
+            height: 500px;
+        }
+        .video-container .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+
+</style>
+</head>
+<body>
+<header>
+    <div class="bg">
+        <div class="container container1">
+            <div class="logo navbar-left">
+                <img src="/images/railwaysystemlogo.png" alt="Railway Logo">
+                <h1>RailEase</h1>
+                </div>
+                <div class="d-flex homeProfile">
+                    <button class="btn btn-outline-light home">Home</button>
+                    <button  id="profile" class="btn btn-outline-light">Profile</button>
+                </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-trans"    onclick= "window.location.href = '/RailwayStationPage.html';">Manage Station</button>
+            <button id="addStationButton" class="btn btn-trans" onclick="window.location.href = '/Station.html';">Add new Station</button>
+            <button class="btn btn-trans">Check  Routes </button>
+            <button class="btn btn-trans">Check Pending bookings</button>
+            <button class="btn btn-trans">Check Pending bookings</button>
+        </div>
+    </div>       
+
+</header>
+
+<div class="container containerbdy mt-4">
+<h2>Why book from RailEase</h2>
+<div class="col-md-3 mb-4">
+  <div class="card">
+      <img class="card-img-top" src="/images/Track.webp" alt="Card image">
+      <div class="card-body">
+          <h4 class="card-title">Live Train Tracking</h4>
+          <p class="card-text">Track the real-time location of your train and stay updated on delays or changes.</p>
+      </div>
+  </div>
+</div>
+<div class="col-md-3 mb-4">
+  <div class="card">
+      <img class="card-img-top" src="/images/Wifi.webp" alt="Card image">
+      <div class="card-body">
+          <h4 class="card-title">Free WiFi</h4>
+          <p class="card-text">Enjoy free high-speed internet connectivity across all major railway stations.</p>
+      </div>
+  </div>
+</div>
+<div class="col-md-3 mb-4">
+  <div class="card">
+      <img class="card-img-top" src="/images//SSL security.jpg" alt="Card image">
+      <div class="card-body">
+          <h4 class="card-title">SSL Security</h4>
+          <p class="card-text">Our payment system is secured with SSL encryption to protect your sensitive information.</p>
+      </div>
+  </div>
+</div>
+<div class="col-md-3 mb-4">
+  <div class="card">
+      <img class="card-img-top" src="/images/Payment.jpg" alt="Card image">
+      <div class="card-body">
+          <h4 class="card-title">Mobile Payments</h4>
+          <p class="card-text">Convenient mobile payment options for users on the go.</p>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class=" left-content container">
+    <h2 class="text-center text-white mb-4">
+        <span id="welcome-placeholder"></span>
+    </h2>
+        
+</div>
+
+
+<div class="container containerbdy">
+<div class="card">
+    <div class="card-header">
+        Ticketing Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Issue Tickets:</strong> Process and print tickets for passengers.</li>
+            <li><strong>Cancel Tickets:</strong> Handle cancellations and process refunds.</li>
+            <li><strong>Provide Information:</strong> Answer passenger inquiries.</li>
+            <li><strong>Verify Tickets:</strong> Check ticket validity.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Reservation Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Handle Reservations:</strong> Manage seat reservations.</li>
+            <li><strong>Update Systems:</strong> Keep reservation statuses updated.</li>
+            <li><strong>Assist with Online Bookings:</strong> Support passengers with online reservations.</li>
+            <li><strong>Modify Bookings:</strong> Help passengers change bookings.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Customer Service Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Assist Passengers:</strong> Help with inquiries and complaints.</li>
+            <li><strong>Handle Complaints:</strong> Resolve complaints.</li>
+            <li><strong>Lost and Found:</strong> Manage lost and found items.</li>
+            <li><strong>Provide Accessibility Support:</strong> Assist passengers with special needs.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Platform Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Platform Management:</strong> Ensure platforms are safe and clean.</li>
+            <li><strong>Assist with Boarding:</strong> Help passengers board and disembark.</li>
+            <li><strong>Announce Train Arrivals/Departures:</strong> Make public announcements.</li>
+            <li><strong>Crowd Control:</strong> Manage passenger movement.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Security Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Ensure Safety:</strong> Maintain safety throughout the station.</li>
+            <li><strong>Conduct Inspections:</strong> Perform security checks.</li>
+            <li><strong>Monitor Surveillance:</strong> Watch CCTV cameras.</li>
+            <li><strong>Emergency Response:</strong> Act in emergencies.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Technical Support Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>System Maintenance:</strong> Maintain ticketing and reservation systems.</li>
+            <li><strong>Update Software:</strong> Keep software updated.</li>
+            <li><strong>Data Management:</strong> Protect and manage databases.</li>
+            <li><strong>Technical Assistance:</strong> Provide technical support.</li>
+        </ul>
+    </div>
+
+<div class="card">
+    <div class="card-header">
+        Supervisory Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Oversee Operations:</strong> Supervise daily operations.</li>
+            <li><strong>Staff Management:</strong> Manage staff schedules and performance.</li>
+            <li><strong>Training:</strong> Train staff members.</li>
+            <li><strong>Policy Implementation:</strong> Ensure policy compliance.</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Cleaning Staff
+    </div>
+    <div class="card-body">
+        <ul>
+            <li><strong>Clean Facilities:</strong> Maintain cleanliness.</li>
+            <li><strong>Waste Management:</strong> Manage waste disposal.</li>
+            <li><strong>Restock Supplies:</strong> Ensure supplies are stocked.</li>
+            <li><strong>Sanitize Areas:</strong> Regularly sanitize high-touch areas.</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<footer class="footer-distributed" style="background-color: #131c39;">    
+<div class="footer-left">
+<h3>RailEase<span></span></h3>
+<p class="footer-links">
+  <a href="#" class="link-1">Home</a>
+  
+  <a href="#">Blog</a>
+
+  <a href="#">Pricing</a>
+
+  <a href="#">About</a>
+  
+  <a href="#">Faq</a>
+  
+  <a href="#">Contact</a>
+</p>
+
+<p class="footer-company-name">RailEase © 2015</p>
+</div>
+
+<div class="footer-center">
+<div>
+  <i class="fa fa-map-marker"></i>
+  <p><span>106 A. Mughalpura Station</span> Mughalpura Station, Lahore</p>
+</div>
+
+<div>
+  <i class="fa fa-phone"></i>
+  <p>+92-345-958-2324</p>
+</div>
+
+<div>
+  <i class="fa fa-envelope"></i>
+  <p><a href="mailto:support@company.com">support@railease.com</a></p>
+</div>
+
+</div>
+
+<div class="footer-right">
+
+<p class="footer-company-about">
+  <span>RailEase</span>
+  The RailEase project aims to modernize and enhance the country's railway infrastructure, catering to the growing demands of passengers and freight transportation. With a focus on efficiency, safety, and comfort, the project encompasses various initiatives, including the renovation of existing stations and the construction of new ones equipped with state-of-the-art facilities.
+</p>
+
+<div class="footer-icons">
+  <a href="#"><i class="fa fa-facebook"></i></a>
+  <a href="#"><i class="fa fa-twitter"></i></a>
+  <a href="#"><i class="fa fa-linkedin"></i></a>
+  <a href="#"><i class="fa fa-github"></i></a>
+
+</div>
+</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function() {
+        // Placeholder for dynamic welcome message
+        $("#welcome-placeholder").text(welcomeMessage);
+    });
+
+    document.getElementById("profile").addEventListener("click", function() {
+            window.location.href = '/profile/staff';
+        });
+
+</script>
+
+</body>
+</html>
+
+
+
+   

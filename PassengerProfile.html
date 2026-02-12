@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        header {
+            color: #fff;
+            margin-top: 0;
+        }
+        .bg {
+            background-image: url("RailImg2.png");
+            min-height: 740px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            animation: changeBackground 5s infinite;
+        }
+        .container {
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .container1 {
+            background-color: #182346;
+            display: flex;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 0px 563px 0px 0px;
+        }
+        .logo img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+        .logo h1 {
+            margin: 0;
+            -webkit-text-fill-color: transparent;
+            background: linear-gradient(141deg, #9c26d7, #1eb1db);
+            -webkit-background-clip: text;
+            font-size: 31px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: 800;
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-header h2 {
+            margin: 0;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+        }
+        .profile-content {
+            margin-top: 20px;
+        }
+        .profile-content .row {
+            margin-bottom: 15px;
+        }
+        .profile-label {
+            font-weight: bold;
+            color: #555;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .profile-content .row {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .profile-content .col-sm-4 {
+            font-weight: bold;
+            color: #888;
+        }
+        .profile-content .col-sm-8 {
+            color: #333;
+        }
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+        * {
+            font-family: Open Sans;
+        }
+        .footer-distributed {
+            background: #666;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+            padding: 55px 50px;
+        }
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .footer-distributed .footer-left {
+            width: 40%;
+        }
+        .footer-distributed h3 {
+            color: #ffffff;
+            font: normal 36px 'Open Sans', cursive;
+            margin: 0;
+        }
+        .footer-distributed h3 span {
+            color: lightseagreen;
+        }
+        .footer-distributed .footer-links {
+            color: #ffffff;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            font-weight: 400;
+            text-decoration: none;
+            color: inherit;
+        }
+        .footer-distributed .footer-company-name {
+            color: #222;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+        .footer-distributed .footer-center i {
+            background-color: #33383b;
+            color: #ffffff;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+        .footer-distributed .footer-center i.fa-envelope {
+            font-size: 17px;
+            line-height: 38px;
+        }
+        .footer-distributed .footer-center p {
+            display: inline-block;
+            color: #ffffff;
+            font-weight: 400;
+            vertical-align: middle;
+            margin: 0;
+        }
+        .footer-distributed .footer-center p span {
+            display: block;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 2;
+        }
+        .footer-distributed .footer-center p a {
+            color: lightseagreen;
+            text-decoration: none;;
+        }
+        .footer-distributed .footer-links a:before {
+            content: "|";
+            font-weight: 300;
+            font-size: 20px;
+            left: 0;
+            color: #fff;
+            display: inline-block;
+            padding-right: 5px;
+        }
+        .footer-distributed .footer-links .link-1:before {
+            content: none;
+        }
+        .footer-distributed .footer-right {
+            width: 20%;
+        }
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+        .footer-distributed .footer-company-about span {
+            display: block;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+        .footer-distributed .footer-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color: #33383b;
+            border-radius: 2px;
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 880px) {
+            .footer-distributed {
+                font: bold 14px sans-serif;
+            }
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            .footer-distributed .footer-center i {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <div class="container">
+            <header class="container1">
+                <div class="logo">
+                    <img src="/images/railwaysystemlogo.png" alt="Logo">
+                    <h1>RailEase</h1>
+                </div>
+            </header>
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h2>Passenger Profile</h2>
+                </div>
+                <div id="alert-container"></div> <!-- Alert container -->
+                <div class="profile-content">
+                    <div class="row">
+                        <div class="col-sm-4 profile-label">ID:</div>
+                        <div class="col-sm-8" id="profile-id"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 profile-label">Name:</div>
+                        <div class="col-sm-8">
+                            <span id="profile-name"></span>
+                            <button class="btn btn-primary btn-sm" onclick="editField('name')">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 profile-label">Gender:</div>
+                        <div class="col-sm-8">
+                            <span id="profile-gender"></span>
+                            <button class="btn btn-primary btn-sm" onclick="editField('gender')">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 profile-label">Telephone:</div>
+                        <div class="col-sm-8">
+                            <span id="profile-telephone"></span>
+                            <button class="btn btn-primary btn-sm" onclick="editField('telephone')">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 profile-label">Email:</div>
+                        <div class="col-sm-8">
+                            <span id="profile-email"></span>
+                            <button class="btn btn-primary btn-sm" onclick="editField('email')">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 profile-label">CNIC:</div>
+                        <div class="col-sm-8">
+                            <span id="profile-cnic"></span>
+                            <button class="btn btn-primary btn-sm" onclick="editField('cnic')">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 profile-label">Password:</div>
+                        <div class="col-sm-8">
+                            <span id="profile-password"></span>
+                            <button class="btn btn-primary btn-sm" onclick="editField('password')">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+          <footer class="footer-distributed" style="background-color: #131c39;">    
+              <div class="footer-left">
+                <h3>RailEase<span></span></h3>
+                <p class="footer-links">
+                  <a href="#" class="link-1">Home</a>
+                  
+                  <a href="#">Blog</a>
+                
+                  <a href="#">Pricing</a>
+                
+                  <a href="#">About</a>
+                  
+                  <a href="#">Faq</a>
+                  
+                  <a href="#">Contact</a>
+                </p>
+        
+                <p class="footer-company-name">RailEase © 2015</p>
+              </div>
+        
+              <div class="footer-center">
+                <div>
+                  <i class="fa fa-map-marker"></i>
+                  <p><span>106 A. Mughalpura Station</span> Mughalpura Station, Lahore</p>
+                </div>
+        
+                <div>
+                  <i class="fa fa-phone"></i>
+                  <p>+92-345-958-2324</p>
+                </div>
+        
+                <div>
+                  <i class="fa fa-envelope"></i>
+                  <p><a href="mailto:support@company.com">support@railease.com</a></p>
+                </div>
+        
+              </div>
+        
+              <div class="footer-right">
+        
+                <p class="footer-company-about">
+                  <span>RailEase</span>
+                  The RailEase project aims to modernize and enhance the country's railway infrastructure, catering to the growing demands of passengers and freight transportation. With a focus on efficiency, safety, and comfort, the project encompasses various initiatives, including the renovation of existing stations and the construction of new ones equipped with state-of-the-art facilities.
+                </p>
+        
+                <div class="footer-icons">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                  <a href="#"><i class="fa fa-github"></i></a>
+        
+                </div>
+              </div>
+      </footer>
+    </div>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('/profile/passenger/data')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                updateProfileFields(data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching profile data:', error);
+        });
+});
+
+function updateProfileFields(data) {
+    document.getElementById('profile-id').textContent = data.p_id;
+    document.getElementById('profile-name').textContent = data.p_name;
+    document.getElementById('profile-gender').textContent = data.gender;
+    document.getElementById('profile-telephone').textContent = data.tell_no;
+    document.getElementById('profile-email').textContent = data.email;
+    document.getElementById('profile-cnic').textContent = data.CNIC;
+    document.getElementById('profile-password').textContent = data.passwordd;
+}
+
+function editField(field) {
+    const fieldValue = document.getElementById(`profile-${field}`).textContent;
+    const input = document.createElement('input');
+    input.value = fieldValue;
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+    saveButton.classList.add('btn', 'btn-success', 'btn-sm');
+    saveButton.addEventListener('click', () => {
+        const newValue = input.value;
+        updatePassengerDetail(field, newValue);
+    });
+
+    const container = document.getElementById(`profile-${field}`).parentNode;
+    container.innerHTML = '';
+    container.appendChild(input);
+    container.appendChild(saveButton);
+}
+
+function updatePassengerDetail(field, newValue) {
+    const passengerId = document.getElementById('profile-id').textContent;
+    const data = {
+        id: passengerId,
+        field: field,
+        newValue: newValue,
+    };
+
+    fetch('/update/passenger', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            showAlert('Error updating profile. Please try again.', 'alert-danger');
+        } else {
+            fetchPassengerData();
+            showAlert('Profile updated successfully!', 'alert-success');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating passenger detail:', error);
+        showAlert('Error updating profile. Please try again.', 'alert-danger');
+    });
+}
+
+function fetchPassengerData() {
+    fetch('/profile/passenger/data')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+            } else {
+                updateProfileFields(data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching profile data:', error);
+        });
+}
+
+function showAlert(message, alertClass) {
+    const alertContainer = document.getElementById('alert-container');
+    alertContainer.innerHTML = ''; // Clear existing alerts
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('alert', alertClass, 'alert-dismissible', 'fade', 'show');
+    alertDiv.setAttribute('role', 'alert');
+    alertDiv.textContent = message;
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.classList.add('close');
+    closeButton.setAttribute('data-dismiss', 'alert');
+    closeButton.setAttribute('aria-label', 'Close');
+    closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
+
+    alertDiv.appendChild(closeButton);
+    alertContainer.appendChild(alertDiv);
+
+    // Remove the alert after 3 seconds
+    setTimeout(() => {
+        alertDiv.classList.remove('show');
+        setTimeout(() => alertDiv.remove(), 150); // Remove after fade-out transition
+    }, 3000);
+}
+</script>
+</html>
