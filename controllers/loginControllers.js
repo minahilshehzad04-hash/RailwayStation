@@ -1,18 +1,18 @@
-const sql = require('mssql/msnodesqlv8');
+const sql = require('../mssql_shim');
 const path = require('path');
 const fs = require('fs');
 
 // Connection string for the SQL Server
-const connectionString = 'Driver={ODBC Driver 18 for SQL Server};Server=DESKTOP-APJ5T8S\\SQLEXPRESS,1433;Database=RailwayStation;UID=sa;PWD=12345;Encrypt=no;';
+const connectionString = process.env.DATABASE_URL || 'Driver={ODBC Driver 18 for SQL Server};Server=DESKTOP-APJ5T8S\\SQLEXPRESS,1433;Database=RailwayStation;UID=sa;PWD=12345;Encrypt=no;';
 
 // Create a pool
 const pool = new sql.ConnectionPool({ connectionString: connectionString });
 
-// Connect to the database
-pool.connect().then(() => {
-    console.log('Connected to SQL Server');
-}).catch(err => {
-    console.error('Error connecting to database:', err);
+// Connect to the database asynchronously without blocking module load
+// Use .catch to prevent unhandled rejection errors
+pool.connect().catch(err => {
+    // Connection failed, but that's OK - fallback will be used
+    console.warn('[LoginController] Database connection will use fallback');
 });
 
 const handlePassengerLogin = (req, res) => {
