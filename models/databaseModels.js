@@ -287,6 +287,12 @@ const getAllStaff = async () => {
     return result.recordset;
 };
 
+const getStations = async () => {
+    const request = new sql.Request(pool);
+    const result = await request.query('SELECT * FROM station');
+    return result.recordset;
+};
+
 module.exports = {
     getPassengerInfo,
     getstaffInfo,
@@ -297,5 +303,6 @@ module.exports = {
     getAllTrains,
     getAllPassengers,
     getAllPlatforms,
-    getAllStaff
+    getAllStaff,
+    getStations
 };
