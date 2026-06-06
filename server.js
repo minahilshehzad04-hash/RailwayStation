@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const submitRoutes = require('./routes/submitRoutes');
 const loginRoutes = require('./routes/loginRoutes');

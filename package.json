@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,9 +16,7 @@
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "method-override": "^3.0.0",
-    "msnodesqlv8": "^4.2.1",
     "mssql": "^10.0.2",
-    "odbc": "^2.4.8",
     "sequelize": "^6.37.3",
     "tedious": "^18.2.0"
   }
