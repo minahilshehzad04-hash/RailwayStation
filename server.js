@@ -11,6 +11,7 @@ const profileRoutes = require('./routes/profileRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const fetchRoutes = require('./routes/fetchRoutes');
 const trainRoutes = require('./routes/trainRoutes');
+
 app.use(cors());
 app.use(express.static(__dirname));
 app.use(express.json());
@@ -21,6 +22,11 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
 
 app.use('/submit', submitRoutes);
 app.use('/login', loginRoutes);
@@ -65,6 +71,12 @@ app.get('/staff/:id', async (req, res) => {
     } catch (err) {
         res.status(500).send('Error retrieving staff info');
     }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Server error:', err);
+    res.status(500).json({ error: 'Internal server error' });
 });
 
 app.listen(port, () => {
